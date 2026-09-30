@@ -2,213 +2,519 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ブルアカミニゲームまとめ</title>
+  <style>
+    /* ポップなカラーパレット設定 */
+    :root {
+      --primary-blue: #38bdf8;
+      --primary-blue-hover: #0284c7;
+      --accent-pink: #f472b6;
+      --light-pink: #fdf2f8;
+      --pink-border: #fbcfe8;
+      --bg-color: #f0f9ff;
+      --card-bg: #ffffff;
+      --text-main: #1e293b;
+      --text-sub: #475569;
+      --border-color: #bae6fd;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      margin: 0;
+      padding: 24px 16px;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* ヘッダー部分 */
+    header {
+      background: var(--card-bg);
+      padding: 28px 20px;
+      border-radius: 20px;
+      border: 3px solid var(--border-color);
+      box-shadow: 0 4px 12px rgba(56, 189, 248, 0.15);
+      margin-bottom: 28px;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 0 0 12px 0;
+      color: var(--text-main);
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+    }
+
+    .intro-text {
+      color: var(--text-sub);
+      font-size: 0.95rem;
+      margin: 0;
+    }
+
+    /* カードリスト（グリッドレイアウト） */
+    .game-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+
+    /* 各ゲームのカード */
+    .game-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      border: 2px solid var(--border-color);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .game-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(244, 114, 182, 0.15);
+      border-color: var(--accent-pink);
+    }
+
+    /* ゲームリンクボタン */
+    .game-link {
+      display: block;
+      background-color: var(--primary-blue);
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+      padding: 14px 16px;
+      border-radius: 12px;
+      text-align: center;
+      margin-bottom: 14px;
+      box-shadow: 0 3px 0 var(--primary-blue-hover);
+      transition: all 0.15s ease;
+    }
+
+    .game-link:hover {
+      background-color: var(--primary-blue-hover);
+      transform: translateY(1px);
+      box-shadow: 0 2px 0 var(--primary-blue-hover);
+    }
+
+    /* 折りたたみ（アコーディオン）スタイルの調整 */
+    details {
+      background-color: var(--light-pink);
+      border: 1px solid var(--pink-border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    summary {
+      font-size: 0.9rem;
+      font-weight: bold;
+      color: #be185d;
+      padding: 10px 14px;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.2s;
+      outline: none;
+    }
+
+    summary:hover {
+      background-color: #fce7f3;
+    }
+
+    .game-description {
+      font-size: 0.88rem;
+      color: var(--text-main);
+      padding: 12px 14px;
+      border-top: 1px solid var(--pink-border);
+      white-space: pre-wrap; /* 元のテキストの改行を完全保持 */
+      word-break: break-word;
+      background-color: #ffffff;
+    }
+  </style>
 </head>
 <body>
-  <h1>ブルアカミニゲームまとめ</h1>
-  <p>ダウンロード不要でブラウザで遊べます<br>私のスマホでちゃんとプレイできることを確認済ですが、環境によってはレイアウトが崩れたりする可能性があるためパソコンでのプレイ推奨です</p>
 
-  <ul>
-    <li><strong>ヘイロー神経衰弱（難易度：Insane）</strong><br>
-      <a href="https://lia-2025.github.io/memory-game-ins/" target="_blank">https://lia-2025.github.io/memory-game-ins/</a>
-    </li>
-    <br>
+  <div class="container">
+    <header>
+      <h1>ブルアカミニゲームまとめ</h1>
+      <p class="intro-text">
+        ダウンロード不要でブラウザで遊べます<br>
+        私のスマホでちゃんとプレイできることを確認済ですが、環境によってはレイアウトが崩れたりする可能性があるためパソコンでのプレイ推奨です
+      </p>
+    </header>
 
-    <li><strong>セリフ並べ替えクイズ</strong><br>
-      <a href="https://lia-2025.github.io/sort-game/" target="_blank">https://lia-2025.github.io/sort-game/</a><br>
-      ※現時点で実装済のメインストーリー、イベントストーリー、絆ストーリーのネタバレを含みます<br>
-      ※作中のセリフになるよう、表示されている単語を順番にクリックし、確定ボタンを押して下さい
-    </li>
-    <br>
+    <div class="game-grid">
 
-    <li><strong>タイトルコールクイズ</strong><br>
-      <a href="https://lia-2025.github.io/titlecall-quiz/" target="_blank">https://lia-2025.github.io/titlecall-quiz/</a><br>
-      ※「答えを入力」の欄に全角カタカナでキャラの名前のみを入力して回答ボタンを押して下さい<br>
-      　（シロコの場合「シロコ」が正解で「しろこ」「砂狼シロコ」等は不正解になります）<br>
-      ※わからない場合はパスボタンでパスできます（不正解扱いです）<br>
-      ※デフォルトのキャラのみです（衣装違いのキャラはありません）
-    </li>
-    <br>
+      <!-- 1. ヘイロー神経衰弱（難易度：Insane） -->
+      <div class="game-card">
+        <a href="https://lia-2025.github.io/memory-game-ins/" target="_blank" rel="noopener noreferrer" class="game-link">
+          ヘイロー神経衰弱（難易度：Insane）
+        </a>
+        <details>
+          <summary>遊び方・注意点を見る</summary>
+          <div class="game-description">ヘイロー神経衰弱（難易度：Insane）</div>
+        </details>
+      </div>
 
-    <li><strong>イントロクイズ</strong><br>
-      <a href="https://lia-2025.github.io/intro-quiz/" target="_blank">https://lia-2025.github.io/intro-quiz/</a><br>
-      ※現時点で実装済のメインストーリー、イベントストーリーのネタバレを含みます<br>
-      ※「このBGMが流れていたシーン/イベントは？」ボタンを押すとイントロが流れます<br>
-      　4択のうち、正しい画像を選択して下さい<br>
-      ※画像データが重くなってしまっているため、外出先で開く場合は注意してください
-    </li>
-    <br>
+      <!-- 2. セリフ並べ替えクイズ -->
+      <div class="game-card">
+        <a href="https://lia-2025.github.io/sort-game/" target="_blank" rel="noopener noreferrer" class="game-link">
+          セリフ並べ替えクイズ
+        </a>
+        <details>
+          <summary>遊び方・注意点を見る</summary>
+          <div class="game-description">※現時点で実装済のメインストーリー、イベントストーリー、絆ストーリーのネタバレを含みます
+※作中のセリフになるよう、表示されている単語を順番にクリックし、確定ボタンを押して下さい</div>
+        </details>
+      </div>
 
-    <li><strong>ガチャバナークイズ</strong><br>
-      <a href="https://lia-2025.github.io/banner-quiz/" target="_blank">https://lia-2025.github.io/banner-quiz/</a><br>
-      ※表示されたピックアップタイトルが誰のものか<br>
-      　「答えを入力」の欄に全角カタカナでキャラの名前のみを入力して回答ボタンを押して下さい<br>
-      　（シロコの場合「シロコ」が正解で「しろこ」「砂狼シロコ」等は不正解になります）<br>
-      ※衣装違いについても、キャラの名前のみを入力して下さい<br>
-      　シロコ（水着）やシロコ（ライディング）の場合「シロコ」が正解です<br>
-      ※わからない場合はパスボタンでパスできます（不正解扱いです）<br>
-      ※モモイ、ミドリのようにピックアップタイトルを共有している場合どちらのキャラで回答しても正解です
-    </li>
-    <br>
+      <!-- 3. タイトルコールクイズ -->
+      <div class="game-card">
+        <a href="https://lia-2025.github.io/titlecall-quiz/" target="_blank" rel="noopener noreferrer" class="game-link">
+          タイトルコールクイズ
+        </a>
+        <details>
+          <summary>遊び方・注意点を見る</summary>
+          <div class="game-description">※「答えを入力」の欄に全角カタカナでキャラの名前のみを入力して回答ボタンを押して下さい
+ （シロコの場合「シロコ」が正解で「しろこ」「砂狼シロコ」等は不正解になります）
+※わからない場合はパスボタンでパスできます（不正解扱いです）
+※デフォルトのキャラのみです（衣装違いのキャラはありません）</div>
+        </details>
+      </div>
 
-    <li><strong>名字神経衰弱</strong><br>
-      <a href="https://lia-2025.github.io/name-memory-game/" target="_blank">https://lia-2025.github.io/name-memory-game/</a><br>
-      ※モモイ/ミドリ、シュン/ココナの画像が小さくて見づらいかもしれません
-    </li>
-    <br>
+      <!-- 4. イントロクイズ -->
+      <div class="game-card">
+        <a href="https://lia-2025.github.io/intro-quiz/" target="_blank" rel="noopener noreferrer" class="game-link">
+          イントロクイズ
+        </a>
+        <details>
+          <summary>遊び方・注意点を見る</summary>
+          <div class="game-description">※現時点で実装済のメインストーリー、イベントストーリーのネタバレを含みます
+※「このBGMが流れていたシーン/イベントは？」ボタンを押すとイントロが流れます
+ 4択のうち、正しい画像を選択して下さい
+※画像データが重くなってしまっているため、外出先で開く場合は注意してください</div>
+        </details>
+      </div>
 
-    <li><strong>ヘイロー四川省</strong><br>
-      <a href="https://lia-2025.github.io/halo-shisen-game/" target="_blank">https://lia-2025.github.io/halo-shisen-game/</a><br>
-      ※ルールはキャラとヘイローがペアになった四川省です<br>
-      　（隣合っているペア、2回まで曲がれる線で結べるペアを消すことができます）<br>
-      ※ヒントボタンを押すと今消すことができるペアがオレンジ色の枠で表示されます<br>
-      　ただし経過時間が20秒加算されます<br>
-      ※シャッフルボタンを押すと盤面がシャッフルされます<br>
-      　ただし経過時間が20秒加算されます<br>
-      ※詰んだ場合（消すことができるペアが存在しない場合）自動でシャッフルされます<br>
-      　その場合は経過時間は加算されません
-    </li>
-    <br>
+      <!-- 5. ガチャバナークイズ -->
+      <div class="game-card">
+        <a href="https://lia-2025.github.io/banner-quiz/" target="_blank" rel="noopener noreferrer" class="game-link">
+          ガチャバナークイズ
+        </a>
+        <details>
+          <summary>遊び方・注意点を見る</summary>
+          <div class="game-description">※表示されたピックアップタイトルが誰のものか
+ 「答えを入力」の欄に全角カタカナでキャラの名前のみを入力して回答ボタンを押して下さい
+ （シロコの場合「シロコ」が正解で「しろこ」「砂狼シロコ」等は不正解になります）
+※衣装違いについても、キャラの名前のみを入力して下さい
+ シロコ（水着）やシロコ（ライディング）の場合「シロコ」が正解です
+※わからない場合はパスボタンでパスできます（不正解扱いです）
+※モモイ、ミドリのようにピックアップタイトルを共有している場合どちらのキャラで回答しても正解です</div>
+        </details>
+      </div>
 
-    <li><strong>ヘイロー神経衰弱（難易度：Insane）名字とヘイローペアver</strong><br>
-      <a href="https://lia-2025.github.io/memory-game-ins2/" target="_blank">https://lia-2025.github.io/memory-game-ins2/</a><br>
-      ※キャラではなく名字とヘイローのペアです<br>
-      ※モモイ/ミドリ、シュン/ココナのヘイローの画像が小さくて見づらいかもしれません
-    </li>
-        <br>
+      <!-- 6. 名字神経衰弱 -->
+      <div class="game-card">
+        <a href="https://lia-2025.github.io/name-memory-game/" target="_blank" rel="noopener noreferrer" class="game-link">
+          名字神経衰弱
+        </a>
+        <details>
+          <summary>遊び方・注意点を見る</summary>
+          <div class="game-description">※モモイ/ミドリ、シュン/ココナの画像が小さくて見づらいかもしれません</div>
+        </details>
+      </div>
 
-    <li><strong>プロフィールクイズ</strong><br>
-      <a href="https://lia-2025.github.io/profile-quiz/" target="_blank">https://lia-2025.github.io/profile-quiz/</a><br>
-      ※問題は全キャラからランダムで10問です<br>
-      ※ヒントをクリックし、該当するキャラを「答えを入力」の欄に全角カタカナでキャラの名前のみを入力して回答ボタンを押して下さい<br>
-      （例：シロコの場合「シロコ」が正解で「しろこ」「砂狼シロコ」等は不正解になります）<br>
-      ※ヒントは「学校」「部活」「年齢」「身長」「趣味」「誕生日」「クラス」「固有武器」「ピックアップタイトル」「名字」の10個です<br>
-      ※ピックアップタイトルについては、ノーマルキャラのピックアップガチャが存在しないキャラは衣装違いのピックアップタイトルになっています<br>
-      （例：ユウカの場合、体操服ユウカのピックアップタイトル「理性と情熱のEquation」になっています）<br>
-      　衣装違いもない場合は「ピックアップタイトルなし」になっています<br>
-      ※正解した場合、開いたヒントが少ないほど得点は高くなります（1問あたり最高10点、最低1点）<br>
-      ※ヒントの配置は毎回ランダムです（早めにわかりやすいヒントが引けるかは運です）<br>
-      ※間違った回答をした場合0点となり次の問題に進みます<br>
-      ※全10問100点満点です
-    </li>
-            <br>
-    <li><strong>イントロ神経衰弱</strong><br>
-      <a href="https://lia-2025.github.io/intromemory-game/" target="_blank">https://lia-2025.github.io/intromemory-game/</a><br>
-      ※音声ファイルと画像ファイルの読み込みが多いため、通信容量が多くかかる可能性があるためご注意ください<br>
-      ※音が出るのでご注意ください<br>
-      ※イントロクイズと神経衰弱を組み合わせたゲームです<br>
-      　曲を聴いて曲名のカードとペアを作ってください<br>
-      ※問題は64曲からランダムで32曲です<br>
-      ※曲のカードを続けてめくると音が重なって再生されます（ちょっとうるさいかもしれません）
-    </li>
-        <br>
-      <li><strong>BGMランキングメーカー</strong><br>
-      <a href="https://lia-2025.github.io/bgm-ranking-maker/" target="_blank">https://lia-2025.github.io/bgm-ranking-maker/</a><br>
-【操作方法】<br>
-1.BGM一覧から曲を選ぶ<br>
-　曲名の横にある「追加」ボタンを押すと右側のランキングに追加されます<br>
-2.順位を並び替える<br>
-　右側に追加された曲はドラッグ＆ドロップで順位を入れ替えられます<br>
-3.検索機能<br>
-　上部の検索フォームに文字を入力すると、BGM一覧を絞り込みできます<br>
-　（検索フォーム右のピンクのクリアボタンで検索ワードを一括消去できます）<br>
-4.曲の削除<br>
-　ランキングに入れた曲は「削除」ボタンで外せます<br>
-5.スクリーンショット<br>
-　完成したランキングは「スクリーンショット」ボタンで画像として保存できます<br>
-    </li>
-        <br>
-     <li><strong>ステータスメッセージクイズ</strong><br>
-      <a href="https://lia-2025.github.io/status-message-quiz/" target="_blank">https://lia-2025.github.io/status-message-quiz/</a><br>
-※表示されたモモトークのステータスメッセージが誰のものか<br>
-　「答えを入力」の欄に全角カタカナでキャラの名前のみを入力して回答ボタンを押して下さい<br>
-　（シロコの場合「シロコ」が正解で「しろこ」「砂狼シロコ」等は不正解になります）<br>
-※また、衣装違いについても、キャラの名前のみを入力して下さい<br>
-　シロコ（水着）やシロコ（ライディング）の場合「シロコ」が正解です<br>
-※「シロコ＊テラー」のシロコとテラーの間はアスタリスクです<br>
-※ステータスメッセージになにも書かれていないキャラは「空欄」と表示されます<br>
-※わからない場合はパスボタンでパスできます（不正解扱いです）<br>
-    </li>
-        <br>
-    <li><strong>メモロビランキングメーカー</strong><br>
-      <a href="https://lia-2025.github.io/memolobby-ranking-maker/" target="_blank">https://lia-2025.github.io/memolobby-ranking-maker/</a><br>
-【操作方法】<br>
-1.キャラ一覧からキャラを選ぶ<br>
-　キャラ名の横にある「追加」ボタンを押すと右側のランキングに追加されます<br>
-2.順位を並び替える<br>
-　右側に追加されたキャラはドラッグ＆ドロップで順位を入れ替えられます<br>
-3.検索機能<br>
-　上部の検索フォームに文字を入力すると、キャラ一覧を絞り込みできます<br>
-　（検索フォーム右のピンクのクリアボタンで検索ワードを一括消去できます）<br>
-4.キャラの削除<br>
-　ランキングに入れたキャラは「削除」ボタンで外せます<br>
-5.スクリーンショット<br>
-　完成したランキングは「スクリーンショット」ボタンで画像として保存できます<br>
-    </li>
-        <br>
-      <li><strong>メモロビクイズ</strong><br>
-      <a href="https://lia-2025.github.io/memolobby-quiz/" target="_blank">https://lia-2025.github.io/memolobby-quiz/</a><br>
-      ※メモロビの一部が表示されるので、表示されたメモロビが誰のものか<br>
-        「答えを入力」の欄に全角カタカナでキャラの名前のみを入力して回答ボタンを押して下さい<br>
-        （PCの場合、回答ボタンではなくエンターキーを押しても回答できます）<br>
-      　シロコの場合「シロコ」が正解で「しろこ」「砂狼シロコ」等は不正解になります<br>
-      ※また、衣装違いについても、キャラの名前のみを入力して下さい<br>
-          シロコ（水着）やシロコ（ライディング）の場合「シロコ」が正解です<br>
-      ※「シロコ＊テラー」のシロコとテラーの間はアスタリスクです<br>
-      ※わからない場合はパスボタンでパスできます（不正解扱いです）<br>
-      ※キャラによっていい感じに切り取れたり切り取れなかったりして難易度はほどほどになってます<br>
-    </li>
-        <br>
-        <li><strong>私の選ぶブルアカBGM10曲</strong><br>
-      <a href="https://lia-2025.github.io/my-ba-bgm/" target="_blank">https://lia-2025.github.io/my-ba-bgm/</a><br>
-【操作方法】<br>
-1.BGM一覧から曲を選ぶ<br>
-  　曲名の横にある「追加」ボタンを押すと右側の一覧に追加されます<br>
-2.検索機能<br>
-  　上部の検索フォームに文字を入力すると、BGM一覧を絞り込みできます<br>
-  　（検索フォーム右のピンクのクリアボタンで検索ワードを一括消去できます）<br>
-3.曲の削除<br>
-  　一覧に入れた曲は「削除」ボタンで外せます<br>
-4.スクリーンショット<br>
-  　完成した一覧は「スクリーンショット」ボタンで画像として保存できます<br>
-5.Xでシェア<br>
-  　「Xでシェア」ボタンでXの投稿画面が開きます<br>
-  　先生たちの10曲を見てみたいのでシェアしてもらえると喜びます<br>
-  　（4で保存したスクショを手動で添付して下さい）<br>
-    </li>
-    <br>
-        <li><strong>タイトルコールクイズ（チャレンジモード）</strong><br>
-      <a href="https://lia-2025.github.io/titlecall-quiz-challenge/" target="_blank">https://lia-2025.github.io/titlecall-quiz-challenge/</a><br>
-      ※何問連続で正解できるかチャレンジ<br>
-        　間違えるまで終わらないモードになってます<br>
-      ※「答えを入力」の欄に全角カタカナでキャラの名前のみを入力して回答ボタンを押して下さい<br>
-      　（シロコの場合「シロコ」が正解で「しろこ」「砂狼シロコ」等は不正解になります）<br>
-      ※わからない場合はパスボタンでパスできます（不正解扱いです）<br>
-      ※デフォルトのキャラのみです（衣装違いのキャラはありません）<br>
-      ※不正解になった時点で終わりです
-    </li>
-    <br>
-        <li><strong>総力戦クイズ</strong><br>
-      <a href="https://lia-2025.github.io/totalassault-quiz/" target="_blank">https://lia-2025.github.io/totalassault-quiz/</a><br>
-      ※音が出るので注意して下さい<br>
-      ※総力戦のBGMとSEをミュートしてボイスのみが再生されるので、それがどのボスとの戦闘かを当てるクイズです<br>
-      ※そもそもボスの数（13体）しか問題がないのでリプレイ性は低いです。一発ネタとして遊んでください<br>
-      ※1問30秒のボイスが流れるので、どのボスとの戦闘かを選んで回答してください。早めに回答できると高得点です<br>
-      ※得点は最初10点からスタートし、3秒ごとに1点ずつ減少します。答えられなかった場合は不正解で0点になります。間違った回答をした場合も0点になります<br>
-      ※ボイスは一時停止ボタンで止められます（止めてから選択→回答がおすすめ）<br>
-      ※総力戦の難易度はINSANEクリア想定でやっています<br>
-      ※EXスキル演出はOFFです<br>
-      ※戦闘開始から30秒のボイスです（前半後半があるボスについては前半のボイスということになります）<br>
-      ※大決戦で録ったボイスもありますが、本来の属性（総力戦の場合の属性）でやっています<br>
-      ※スキル回しや編成はエンジョイ勢がやってるものと思って下さい（いわゆる最適ではありません）<br>
-      ※イェソドは…どうしようもありませんでした！
-    </li>
-    <br>
-  </ul>
+      <!-- 7. ヘイロー四川省 -->
+      <div class="game-card">
+        <a href="https://lia-2025.github.io/halo-shisen-game/" target="_blank" rel="noopener noreferrer" class="game-link">
+          ヘイロー四川省
+        </a>
+        <details>
+          <summary>遊び方・注意点を見る</summary>
+          <div class="game-description">※ルールはキャラとヘイローがペアになった四川省です
+ （隣合っているペア、2回まで曲がれる線で結べるペアを消すことができます）
+※ヒントボタンを押すと今消すことができるペアがオレンジ色の枠で表示されます
+ ただし経過時間が20秒加算されます
+※シャッフルボタンを押すと盤面がシャッフルされます
+ ただし経過時間が20秒加算されます
+※詰んだ場合（消すことができるペアが存在しない場合）自動でシャッフルされます
+ その場合は経過時間は加算されません</div>
+        </details>
+      </div>
+
+      <!-- 8. ヘイロー神経衰弱（難易度：Insane）名字とヘイローペアver -->
+      <div class="game-card">
+        <a href="https://lia-2025.github.io/memory-game-ins2/" target="_blank" rel="noopener noreferrer" class="game-link">
+          ヘイロー神経衰弱<br>（名字とヘイローペアver）
+        </a>
+        <details>
+          <summary>遊び方・注意点を見る</summary>
+          <div class="game-description">※キャラではなく名字とヘイローのペアです
+※モモイ/ミドリ、シュン/ココナのヘイローの画像が小さくて見づらいかもしれません</div>
+        </details>
+      </div>
+
+      <!-- 9. プロフィールクイズ -->
+      <div class="game-card">
+        <a href="https://lia-2025.github.io/profile-quiz/" target="_blank" rel="noopener noreferrer" class="game-link">
+          プロフィールクイズ
+        </a>
+        <details>
+          <summary>遊び方・注意点を見る</summary>
+          <div class="game-description">※問題は全キャラからランダムで10問です
+※ヒントをクリックし、該当するキャラを「答えを入力」の欄に全角カタカナでキャラの名前のみを入力して回答ボタンを押して下さい
+（例：シロコの場合「シロコ」が正解で「しろこ」「砂狼シロコ」等は不正解になります）
+※ヒントは「学校」「部活」「年齢」「身長」「趣味」「誕生日」「クラス」「固有武器」「ピックアップタイトル」「名字」の10個です
+※ピックアップタイトルについては、ノーマルキャラのピックアップガチャが存在しないキャラは衣装違いのピックアップタイトルになっています
+（例：ユウカの場合、体操服ユウカのピックアップタイトル「理性と情熱のEquation」になっています）
+ 衣装違いもない場合は「ピックアップタイトルなし」になっています
+※正解した場合、開いたヒントが少ないほど得点は高くなります（1問あたり最高10点、最低1点）
+※ヒントの配置は毎回ランダムです（早めにわかりやすいヒントが引けるかは運です）
+※間違った回答をした場合0点となり次の問題に進みます
+※全10問100点満点です</div>
+        </details>
+      </div>
+
+      <!-- 10. イントロ神経衰弱 -->
+      <div class="game-card">
+        <a href="https://lia-2025.github.io/intromemory-game/" target="_blank" rel="noopener noreferrer" class="game-link">
+          イントロ神経衰弱
+        </a>
+        <details>
+          <summary>遊び方・注意点を見る</summary>
+          <div class="game-description">※音声ファイルと画像ファイルの読み込みが多いため、通信容量が多くかかる可能性があるためご注意ください
+※音が出るのでご注意ください
+※イントロクイズと神経衰弱を組み合わせたゲームです
+ 曲を聴いて曲名のカードとペアを作ってください
+※問題は64曲からランダムで32曲です
+※曲のカードを続けてめくると音が重なって再生されます（ちょっとうるさいかもしれません）</div>
+        </details>
+      </div>
+
+      <!-- 11. BGMランキングメーカー -->
+      <div class="game-card">
+        <a href="https://lia-2025.github.io/bgm-ranking-maker/" target="_blank" rel="noopener noreferrer" class="game-link">
+          BGMランキングメーカー
+        </a>
+        <details>
+          <summary>遊び方・注意点を見る</summary>
+          <div class="game-description">【操作方法】
+1.BGM一覧から曲を選ぶ
+ 曲名の横にある「追加」ボタンを押すと右側のランキングに追加されます
+2.順位を並び替える
+ 右側に追加された曲はドラッグ＆ドロップで順位を入れ替えられます
+3.検索機能
+ 上部の検索フォームに文字を入力すると、BGM一覧を絞り込みできます
+ （検索フォーム右のピンクのクリアボタンで検索ワードを一括消去できます）
+4.曲の削除
+ ランキングに入れた曲は「削除」ボタンで外せます
+5.スクリーンショット
+ 完成したランキングは「スクリーンショット」ボタンで画像として保存できます</div>
+        </details>
+      </div>
+
+      <!-- 12. ステータスメッセージクイズ -->
+      <div class="game-card">
+        <a href="https://lia-2025.github.io/status-message-quiz/" target="_blank" rel="noopener noreferrer" class="game-link">
+          ステータスメッセージクイズ
+        </a>
+        <details>
+          <summary>遊び方・注意点を見る</summary>
+          <div class="game-description">※表示されたモモトークのステータスメッセージが誰のものか
+ 「答えを入力」の欄に全角カタカナでキャラの名前のみを入力して回答ボタンを押して下さい
+ （シロコの場合「シロコ」が正解で「しろこ」「砂狼シロコ」等は不正解になります）
+※また、衣装違いについても、キャラの名前のみを入力して下さい
+ シロコ（水着）やシロコ（ライディング）の場合「シロコ」が正解です
+※「シロコ＊テラー」のシロコとテラーの間はアスタリスクです
+※ステータスメッセージになにも書かれていないキャラは「空欄」と表示されます
+※わからない場合はパスボタンでパスできます（不正解扱いです）</div>
+        </details>
+      </div>
+
+      <!-- 13. メモロビランキングメーカー -->
+      <div class="game-card">
+        <a href="https://lia-2025.github.io/memolobby-ranking-maker/" target="_blank" rel="noopener noreferrer" class="game-link">
+          メモロビランキングメーカー
+        </a>
+        <details>
+          <summary>遊び方・注意点を見る</summary>
+          <div class="game-description">【操作方法】
+1.キャラ一覧からキャラを選ぶ
+ キャラ名の横にある「追加」ボタンを押すと右側のランキングに追加されます
+2.順位を並び替える
+ 右側に追加されたキャラはドラッグ＆ドロップで順位を入れ替えられます
+3.検索機能
+ 上部の検索フォームに文字を入力すると、キャラ一覧を絞り込みできます
+ （検索フォーム右のピンクのクリアボタンで検索ワードを一括消去できます）
+4.キャラの削除
+ ランキングに入れたキャラは「削除」ボタンで外せます
+5.スクリーンショット
+ 完成したランキングは「スクリーンショット」ボタンで画像として保存できます</div>
+        </details>
+      </div>
+
+      <!-- 14. メモロビクイズ -->
+      <div class="game-card">
+        <a href="https://lia-2025.github.io/memolobby-quiz/" target="_blank" rel="noopener noreferrer" class="game-link">
+          メモロビクイズ
+        </a>
+        <details>
+          <summary>遊び方・注意点を見る</summary>
+          <div class="game-description">※メモロビの一部が表示されるので、表示されたメモロビが誰のものか
+  「答えを入力」の欄に全角カタカナでキャラの名前のみを入力して回答ボタンを押して下さい
+  （PCの場合、回答ボタンではなくエンターキーを押しても回答できます）
+ シロコの場合「シロコ」が正解で「しろこ」「砂狼シロコ」等は不正解になります
+※また、衣装違いについても、キャラの名前のみを入力して下さい
+    シロコ（水着）やシロコ（ライディング）の場合「シロコ」が正解です
+※「シロコ＊テラー」のシロコとテラーの間はアスタリスクです
+※わからない場合はパスボタンでパスできます（不正解扱いです）
+※キャラによっていい感じに切り取れたり切り取れなかったりして難易度はほどほどになってます</div>
+        </details>
+      </div>
+
+      <!-- 15. 私の選ぶブルアカBGM10曲 -->
+      <div class="game-card">
+        <a href="https://lia-2025.github.io/my-ba-bgm/" target="_blank" rel="noopener noreferrer" class="game-link">
+          私の選ぶブルアカBGM10曲
+        </a>
+        <details>
+          <summary>遊び方・注意点を見る</summary>
+          <div class="game-description">【操作方法】
+1.BGM一覧から曲を選ぶ
+   曲名の横にある「追加」ボタンを押すと右側の一覧に追加されます
+2.検索機能
+   上部の検索フォームに文字を入力すると、BGM一覧を絞り込みできます
+   （検索フォーム右のピンクのクリアボタンで検索ワードを一括消去できます）
+3.曲の削除
+   一覧に入れた曲は「削除」ボタンで外せます
+4.スクリーンショット
+   完成した一覧は「スクリーンショット」ボタンで画像として保存できます
+5.Xでシェア
+   「Xでシェア」ボタンでXの投稿画面が開きます
+   先生たちの10曲を見てみたいのでシェアしてもらえると喜びます
+   （4で保存したスクショを手動で添付して下さい）</div>
+        </details>
+      </div>
+
+      <!-- 16. タイトルコールクイズ（チャレンジモード） -->
+      <div class="game-card">
+        <a href="https://lia-2025.github.io/titlecall-quiz-challenge/" target="_blank" rel="noopener noreferrer" class="game-link">
+          タイトルコールクイズ<br>（チャレンジモード）
+        </a>
+        <details>
+          <summary>遊び方・注意点を見る</summary>
+          <div class="game-description">※何問連続で正解できるかチャレンジ
+   間違えるまで終わらないモードになってます
+※「答えを入力」の欄に全角カタカナでキャラの名前のみを入力して回答ボタンを押して下さい
+ （シロコの場合「シロコ」が正解で「しろこ」「砂狼シロコ」等は不正解になります）
+※わからない場合はパスボタンでパスできます（不正解扱いです）
+※デフォルトのキャラのみです（衣装違いのキャラはありません）
+※不正解になった時点で終わりです</div>
+        </details>
+      </div>
+
+      <!-- 17. 総力戦クイズ -->
+      <div class="game-card">
+        <a href="https://lia-2025.github.io/totalassault-quiz/" target="_blank" rel="noopener noreferrer" class="game-link">
+          総力戦クイズ
+        </a>
+        <details>
+          <summary>遊び方・注意点を見る</summary>
+          <div class="game-description">※音が出るので注意して下さい
+※総力戦のBGMとSEをミュートしてボイスのみが再生されるので、それがどのボスとの戦闘かを当てるクイズです
+※そもそもボスの数（13体）しか問題がないのでリプレイ性は低いです。一発ネタとして遊んでください
+※1問30秒のボイスが流れるので、どのボスとの戦闘かを選んで回答してください。早めに回答できると高得点です
+※得点は最初10点からスタートし、3秒ごとに1点ずつ減少します。答えられなかった場合は不正解で0点になります。間違った回答をした場合も0点になります
+※ボイスは一時停止ボタンで止められます（止めてから選択→回答がおすすめ）
+※総力戦の難易度はINSANEクリア想定でやっています
+※EXスキル演出はOFFです
+※戦闘開始から30秒のボイスです（前半後半があるボスについては前半のボイスということになります）
+※大決戦で録ったボイスもありますが、本来の属性（総力戦の場合の属性）でやっています
+※スキル回しや編成はエンジョイ勢がやってるものと思って下さい（いわゆる最適ではありません）
+※イェソドは…どうしようもありませんでした！</div>
+        </details>
+      </div>
+
+      <!-- 18. 私の選ぶメモロビ9選 -->
+      <div class="game-card">
+        <a href="https://lia-2025.github.io/my-ba-9memolobby/" target="_blank" rel="noopener noreferrer" class="game-link">
+          私の選ぶメモロビ9選
+        </a>
+        <details>
+          <summary>遊び方・注意点を見る</summary>
+          <div class="game-description">
+【操作方法】
+
+1.生徒一覧からメモロビを選ぶ
+　生徒名の横にある「追加」ボタンを押すと右側の一覧に追加されます
+
+2.検索機能
+　上部の検索フォームに文字を入力すると、生徒一覧を絞り込みできます
+　（検索フォーム右のピンクのクリアボタンで検索ワードを一括消去できます）
+
+3.メモロビの削除
+　一覧に入れたメモロビは右上の☓ボタンで一覧から削除できます
+
+4.スクリーンショット
+　完成した一覧は「スクリーンショット」ボタンで画像として保存できます
+
+5.Xでシェア
+　「Xでシェア」ボタンでXの投稿画面が開きます
+　先生たちのメモロビ9選を見てみたいのでシェアしてもらえると喜びます
+　（4で保存したスクショを手動で添付して下さい）
+
+環境によってスクショボタンが反応しない場合があるようです
+調べてみた所セキュリティまわりが原因の可能性があり、全てに対応する修正ができません
+申し訳ありませんがその場合、端末のスクリーンショット機能で代用をお願いします
+
+手動でコピペして作ったのでコピペミス等あるかもしれませんすみません
+漏れや誤字脱字がありましたらご連絡ください</div>
+        </details>
+      </div>
+
+      <!-- 19. 名前クイズ -->
+      <div class="game-card">
+        <a href="https://lia-2025.github.io/name-quiz/" target="_blank" rel="noopener noreferrer" class="game-link">
+          名前クイズ
+        </a>
+        <details>
+          <summary>遊び方・注意点を見る</summary>
+          <div class="game-description">
+※※※遊び方だけ読んで予習復習なしでなにも考えずにとりあえずやってもらうのが一番よさそうです※※※
+
+パソコンでのプレイ推奨です
+私のスマホでちゃんとプレイできることを確認済ですが、環境によってはレイアウトが崩れたりする可能性があります
+
+「クイズスタート」ボタンを押すと始まります
+
+問題は全22問で出題順はランダムです
+
+表示された立ち絵を見て「答えを入力」の欄に全角カタカナでキャラの名前のみを入力して回答ボタンを押して下さい
+（PCの場合、回答ボタンではなくエンターキーを押しても回答できます）
+
+シロコの場合「シロコ」が正解で「しろこ」「砂狼シロコ」等は不正解になります
+
+わからない場合はパスボタンでパスできます（不正解扱いです）
+
+回答の制限時間は7秒です
+7秒経過してしまった場合不正解となります
+
+環境によってスクショボタンが反応しない場合があるようです
+調べてみた所セキュリティまわりが原因の可能性があり、全てに対応する修正ができません
+申し訳ありませんがその場合、端末のスクリーンショット機能で代用をお願いします</div>
+        </details>
+      </div>
+
+    </div>
+  </div>
+
 </body>
 </html>
-
-
-
-
-
